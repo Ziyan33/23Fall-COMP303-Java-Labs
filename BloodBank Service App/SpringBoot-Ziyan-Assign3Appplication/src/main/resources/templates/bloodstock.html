@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blood Stock</title>
+</head>
+<body>
+    <h1>Blood Stock Management</h1>
+
+    <!-- Navigation Link (Optional) -->
+    <nav>
+        <a href="/">Home</a>
+    </nav>
+
+    <!-- List of Blood Stocks -->
+    <div>
+        <h2>Available Blood Stocks</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Blood Group</th>
+                    <th>Quantity</th>
+                    <th>Best Before</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="bloodStock : ${bloodStocks}">
+                    <td th:text="${bloodStock.bloodGroup}">A+</td>
+                    <td th:text="${bloodStock.quantity}">10</td>
+                    <td th:text="${bloodStock.bestBefore}">2023-12-31</td>
+                    <td th:text="${bloodStock.status}">Available</td>
+                    <td>
+                        <!-- Delete Button -->
+                        <form th:action="@{/bloodstock/{id}(id=${bloodStock.id})}" method="post">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Form to Add/Edit Blood Stock -->
+    <div>
+        <h2>Add/Edit Blood Stock</h2>
+        <form action="#" th:action="@{/bloodstock}" th:object="${bloodStock}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <input type="text" th:field="*{bloodGroup}" placeholder="Blood Group">
+            <input type="number" th:field="*{quantity}" placeholder="Quantity">
+            <input type="date" th:field="*{bestBefore}" placeholder="Best Before">
+            <input type="text" th:field="*{status}" placeholder="Status">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

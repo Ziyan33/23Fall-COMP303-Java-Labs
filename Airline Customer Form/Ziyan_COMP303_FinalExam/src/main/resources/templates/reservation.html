@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Reservation Form</title>
+<body>
+
+<div class="container">
+    <h1>Flight Reservation</h1>
+    <form th:action="@{/reserve}" th:object="${reservation}" method="post">
+        <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" th:field="*{passenger.firstName}" required />
+        </div>
+        <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" th:field="*{passenger.lastName}" required />
+        </div>
+        <div>
+            <label for="numberOfPassengers">Number of Passengers:</label>
+            <input type="number" id="numberOfPassengers" th:field="*{passenger.numberOfPassengers}" min="1" required />
+        </div>
+        <div>
+            <label for="departureTime">Departure Time:</label>
+            <input type="time" id="departureTime" th:field="*{flightDetails.departureTime}" required />
+        </div>
+        <div>
+            <label for="departureDate">Departure Date:</label>
+            <input type="date" id="departureDate" th:field="*{flightDetails.departureDate}" required />
+        </div>
+        <div>
+            <button type="submit">Submit Reservation</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

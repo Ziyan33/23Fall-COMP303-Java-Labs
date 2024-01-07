@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blood Banks</title>
+</head>
+<body>
+    <h1>Blood Banks Management</h1>
+
+    <!-- Navigation Link (Optional) -->
+    <nav>
+        <a href="/">Home</a>
+    </nav>
+
+    <!-- List of Blood Banks -->
+    <div>
+        <h2>All Blood Banks</h2>
+        <ul>
+            <li th:each="bloodBank : ${bloodBanks}">
+                <span th:text="${bloodBank.bloodbankName}">Name</span>,
+                <span th:text="${bloodBank.address}">Address</span>,
+                <span th:text="${bloodBank.city}">City</span>,
+                <span th:text="${bloodBank.phone}">Phone</span>,
+                <span th:text="${bloodBank.website}">Website</span>,
+                <span th:text="${bloodBank.email}">Email</span>
+                <!-- Delete Button (Assuming you have a method to handle this) -->
+                <form th:action="@{/bloodbank/{id}(id=${bloodBank.id})}" method="post">
+                    <input type="hidden" name="_method" value="delete" />
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Form to Add/Edit a Blood Bank -->
+    <div>
+        <h2>Add/Edit Blood Bank</h2>
+        <form action="#" th:action="@{/bloodbank}" th:object="${bloodBank}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <input type="text" th:field="*{bloodbankName}" placeholder="Name">
+            <input type="text" th:field="*{address}" placeholder="Address">
+            <input type="text" th:field="*{city}" placeholder="City">
+            <input type="text" th:field="*{phone}" placeholder="Phone">
+            <input type="text" th:field="*{website}" placeholder="Website">
+            <input type="email" th:field="*{email}" placeholder="Email">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Reservation Result</title>
+</head>
+<body>
+    <h1>Flight Reservation Result</h1>
+    <!-- Display Reservation ID -->
+    <p>Reservation ID: 
+        <span th:if="${reservation.id}" th:text="${reservation.id}" th:unless="${reservation.id == null}"></span>
+        <span th:if="${reservation.id == null}">[Blank]</span>
+    </p>
+	<p>Passenger Name: 
+        <span th:if="${reservation.passenger}" th:text="${reservation.passenger.firstName} ${reservation.passenger.lastName}" th:unless="${reservation.passenger == null}">[Name not available]</span>
+        <span th:if="${reservation.passenger == null}">[Blank]</span>
+    </p>
+    
+   
+    <!-- Example link to return to the reservation page -->
+    <a href="/reservation">Return to Reservation</a>
+</body>
+</html>

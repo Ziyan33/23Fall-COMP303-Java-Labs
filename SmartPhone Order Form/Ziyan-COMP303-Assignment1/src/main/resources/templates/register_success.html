@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Registration Success</title>
+<link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+<script type="text/javascript" th:src="@{/script.js}"></script>
+</head>
+
+<body>
+	<div align="center">
+		<h2>Registration Succeeded!</h2>
+		<span>Welcome </span><span th:text="${user.firstName}"></span><span th:text="${user.lastName}"></span><br/>
+		<br/><br/>
+		<span>Your Order details are as follows:</span>	<br/><br/>
+		<span>E-mail:</span><span th:text="${user.email}"></span><br />
+		<span>Phone Number:</span><span th:text="${user.phoneNum}"></span><br />
+		<span>Address1:</span><span th:text="${user.address1}"></span>
+		<span th:text="${user.inputCity}"></span>
+		<span th:text="${user.state}"></span>
+		<span th:text="${user.inputZip}"></span><br />	<br/><br/>
+		
+		<span>Phone Details.</span><br/><br/>
+		<span>Phone Brand:</span><span th:text="${phone.pBrand}"></span><br />
+		<span>Phone Model:</span><span th:text="${phone.pModel}"></span><br />
+		<span>Phone Quatity:</span><span th:text="${phone.pQuantity}"></span><br />
+		<span>Total Price:</span><span th:text="${phone.pTotalPrice}"></span><br />
+	</div>
+</body>
+
+</html>

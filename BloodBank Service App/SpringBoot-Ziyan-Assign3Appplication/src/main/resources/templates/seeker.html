@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Seekers</title>
+    <!-- Add any additional CSS or JS here -->
+</head>
+<body>
+    <h1>Seeker Management</h1>
+
+    <!-- Navigation Link (Optional) -->
+    <nav>
+        <a href="/">Home</a>
+    </nav>
+
+    <!-- List of Seekers -->
+    <div>
+        <h2>List of Seekers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Blood Group</th>
+                    <th>City</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="seeker : ${seekers}">
+                    <td th:text="${seeker.firstName}">John</td>
+                    <td th:text="${seeker.lastName}">Doe</td>
+                    <td th:text="${seeker.age}">30</td>
+                    <td th:text="${seeker.gender}">Male</td>
+                    <td th:text="${seeker.bloodGroup}">A+</td>
+                    <td th:text="${seeker.city}">Springfield</td>
+                    <td th:text="${seeker.phone}">123-456-7890</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Form to Add/Edit a Seeker -->
+    <div>
+        <h2>Add/Edit Seeker</h2>
+        <form action="#" th:action="@{/seeker}" th:object="${seeker}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <input type="text" th:field="*{firstName}" placeholder="First Name">
+            <input type="text" th:field="*{lastName}" placeholder="Last Name">
+            <input type="number" th:field="*{age}" placeholder="Age">
+            <select th:field="*{gender}">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <!-- Add other genders as needed -->
+            </select>
+            <input type="text" th:field="*{bloodGroup}" placeholder="Blood Group">
+            <input type="text" th:field="*{city}" placeholder="City">
+            <input type="text" th:field="*{phone}" placeholder="Phone">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
